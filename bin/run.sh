@@ -1,7 +1,4 @@
-#! /bin/sh
-
-root="/opt/test-runner"
-export PYTHONPATH="$root:$PYTHONPATH"
+#! /bin/bash
 
 mkdir autograding_output
 
