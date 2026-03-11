@@ -1,5 +1,7 @@
 #! /bin/bash
 
+python3 -m pip install -r "${{ github.action_path }}/requirements.txt"
+
 mkdir autograding_output
 
 while [ $# -gt 0 ]; do
