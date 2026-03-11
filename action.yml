@@ -21,3 +21,6 @@ runs:
     - name: Run grader
       shell: bash
       run: "${{ github.action_path }}/bin/run.sh --timeout=${{ inputs.timeout }} --max-score=${{ inputs.max-score }} --setup-command=${{ inputs.setup-command }}"
+    - name: save results
+      shell: bash
+      run: echo "result=$(jq -c . autograding_output/results.json | jq -sRr @base64)" >> "$GITHUB_OUTPUT"
