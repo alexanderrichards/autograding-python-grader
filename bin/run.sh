@@ -1,6 +1,10 @@
 #! /bin/bash
 
-python3 -m pip install -r "requirements.txt"
+
+
+root=$(dirname "$0")
+python3 -m pip install -r "${root}/requirements.txt"
+export PYTHONPATH="$root:$PYTHONPATH"
 
 mkdir autograding_output
 
