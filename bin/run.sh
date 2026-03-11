@@ -1,6 +1,6 @@
 #! /bin/bash
 
-python3 -m pip install -r "${{ github.action_path }}/requirements.txt"
+python3 -m pip install -r "requirements.txt"
 
 mkdir autograding_output
 
@@ -33,7 +33,7 @@ if [ -n "$SETUP_COMMAND" ]; then
   eval "$SETUP_COMMAND"
 fi
 
-timeout "$TIMEOUT" python3 /opt/test-runner/bin/run.py ./ ./autograding_output/ "$MAX_SCORE"
+timeout "$TIMEOUT" python3 $(dirname "$0")/run.py ./ ./autograding_output/ "$MAX_SCORE"
 exit_status=$?
 if [ $exit_status -eq 124 ]; then
   echo "The command took longer than $TIMEOUT seconds to execute. Please increase the timeout to avoid this error."
