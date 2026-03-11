@@ -16,7 +16,6 @@ import timeout_decorator
 
 from io import StringIO
 from .data import Directory, Hierarchy, Results, Test
-from .sort import TestOrder
 
 
 
@@ -82,7 +81,6 @@ class ResultsReporter:
 
         test_id = Hierarchy(report.nodeid)
         source = Path(self.config.rootdir) / report.fspath
-        state.test_code = TestOrder.function_source(test_id, source)
 
 
         # Looks up test_ids from parent when the test is a subtest.
