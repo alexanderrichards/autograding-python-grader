@@ -2,7 +2,7 @@
 
 
 
-root=$(dirname "$0")
+root="$(dirname \"$0\")/../"
 python3 -m pip install -r "${root}/requirements.txt"
 export PYTHONPATH="$root:$PYTHONPATH"
 
@@ -37,7 +37,7 @@ if [ -n "$SETUP_COMMAND" ]; then
   eval "$SETUP_COMMAND"
 fi
 
-timeout "$TIMEOUT" python3 $(dirname "$0")/run.py ./ ./autograding_output/ "$MAX_SCORE"
+timeout "$TIMEOUT" python3 "${root}/bin/run.py" ./ ./autograding_output/ "$MAX_SCORE"
 exit_status=$?
 if [ $exit_status -eq 124 ]; then
   echo "The command took longer than $TIMEOUT seconds to execute. Please increase the timeout to avoid this error."
