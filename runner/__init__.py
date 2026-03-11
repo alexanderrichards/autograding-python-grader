@@ -3,6 +3,7 @@ Test Runner for Python.
 """
 import os
 import re
+from fnmatch import fnmatch
 from textwrap import dedent
 from typing import List
 from pathlib import Path
@@ -206,7 +207,7 @@ def run(indir: Directory, outdir: Directory, max_score: int, args: List[str]) ->
 
     for root, dirs, files in os.walk(indir):
         for file in files:
-            if file.endswith("_test.py"):
+            if file.endswith("_test.py") or fnmatch(file, "test_*.py"):
                 test_files.append(Path(root) / file)
 
     out_file = outdir.joinpath("results.json")
