@@ -31,24 +31,6 @@ class ResultsReporter:
         config.addinivalue_line("markers", "task(taskno): this marks the exercise task number.")
         self.config = config
 
-    def pytest_collection_modifyitems(self, session, config, items):
-        """
-        Sorts the tests in definition order & extracts task_id
-        """
-        for item in items:
-            test_id = Hierarchy(item.nodeid)
-            name = '.'.join(test_id.split("::")[1:])
-
-            for mark in item.iter_markers(name='task'):
-                self.tests[name] = Test(name=name, task_id=mark.kwargs['taskno'])
-
-
-        def _sort_by_lineno(item):
-            test_id = Hierarchy(item.nodeid)
-            source = Path(item.fspath)
-            return TestOrder.lineno(test_id, source)
-
-        items.sort(key=_sort_by_lineno)
 
     def pytest_runtest_logreport(self, report):
         """
