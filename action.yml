@@ -16,10 +16,8 @@ outputs:
   result:
     description: "Runner output"
 runs:
-  using: docker
-  image: Dockerfile
-  entrypoint: "/opt/test-runner/bin/run.sh"
-  args:
-    - "--timeout=${{ inputs.timeout }}"
-    - "--max-score=${{ inputs.max-score }}"
-    - "--setup-command=${{ inputs.setup-command }}"
+  using: composite
+  steps:
+    - name: Run grader
+      shell: bash
+      run: "${{ github.action_path }}/bin/run.sh --timeout=${{ inputs.timeout }} --max-score=${{ inputs.max-score }} --setup-command=${{ inputs.setup-command }}"
