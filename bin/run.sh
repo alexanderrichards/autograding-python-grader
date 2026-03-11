@@ -2,7 +2,8 @@
 
 
 
-root="$(dirname \"$0\")/.."
+#root="$(dirname \"$0\")/.."
+root=$(dirname $(dirname \"$0\"))
 python3 -m pip install -r "${root}/requirements.txt"
 export PYTHONPATH="$root:$PYTHONPATH"
 
